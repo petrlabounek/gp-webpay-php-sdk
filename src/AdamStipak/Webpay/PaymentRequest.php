@@ -21,8 +21,9 @@ class PaymentRequest {
    * @param string $currency
    * @param int $depositFlag
    * @param string $url
+   * @param string $email   
    */
-  public function __construct($orderNumber, $amount, $currency, $depositFlag, $url, $merOrderNumber = NULL) {
+  public function __construct($orderNumber, $amount, $currency, $depositFlag, $url, $merOrderNumber = NULL, $email = NULL) {
     $this->params['MERCHANTNUMBER'] = "";
     $this->params['OPERATION'] = 'CREATE_ORDER';
     $this->params['ORDERNUMBER'] = $orderNumber;
@@ -35,6 +36,10 @@ class PaymentRequest {
     }
 
     $this->params['URL'] = $url;
+    
+    if ($email) {
+    	$this->params['EMAIL'] = $email;
+	}    
   }
 
   /**
